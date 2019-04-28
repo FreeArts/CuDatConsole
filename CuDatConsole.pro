@@ -16,7 +16,23 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-    csvreader.cpp
+    csvreader.cpp \
+    cudatconsole.cpp
 
 HEADERS += \
-    csvreader.h
+    csvreader.h \
+    cudatconsole.h
+
+unix:!macx: LIBS += -L$$PWD/../CuDatBase/cudatbase/src/ -lSelect
+
+INCLUDEPATH += $$PWD/../CuDatBase/cudatbase/src
+DEPENDPATH += $$PWD/../CuDatBase/cudatbase/src
+
+unix:!macx: LIBS += -lcudart
+#Maybe not needed :
+unix:!macx: LIBS += -lcuda
+
+unix:!macx: LIBS += -L$$PWD/../CuDatBase/cudatbase/src/ -lCudaSelect
+
+INCLUDEPATH += $$PWD/../CuDatBase/cudatbase/src
+DEPENDPATH += $$PWD/../CuDatBase/cudatbase/src
